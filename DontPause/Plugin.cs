@@ -26,7 +26,6 @@ namespace DontPause
 
         internal static Plugin Instance { get; private set; }
         internal static IPALogger Log { get; private set; }
-        internal static DontPauseController PluginController { get { return DontPauseController.Instance; } }
 
         [Init]
         /// <summary>
@@ -62,7 +61,6 @@ namespace DontPause
         [OnEnable]
         public void OnEnable()
         {
-            new GameObject("DontPauseController").AddComponent<DontPauseController>();
             ApplyHarmonyPatches();
         }
 
@@ -74,8 +72,6 @@ namespace DontPause
         [OnDisable]
         public void OnDisable()
         {
-            if (PluginController != null)
-                GameObject.Destroy(PluginController);
             RemoveHarmonyPatches();
         }
 
