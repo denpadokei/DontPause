@@ -13,7 +13,7 @@ using IPALogger = IPA.Logging.Logger;
 
 namespace DontPause
 {
-    [HarmonyPatch(typeof(PauseController), nameof(PauseController.HandleHMDUnmounted))]
+    [HarmonyPatch(typeof(PauseController), nameof(PauseController.HandleInputFocusWasCaptured))]
     [Plugin(RuntimeOptions.DynamicInit)]
     public class Plugin
     {
