@@ -13,7 +13,7 @@ using IPALogger = IPA.Logging.Logger;
 
 namespace DontPause
 {
-    [HarmonyPatch(typeof(PauseController), nameof(PauseController.HandleInputFocusWasCaptured))]
+    [HarmonyPatch(typeof(PauseController))]
     [Plugin(RuntimeOptions.DynamicInit)]
     public class Plugin
     {
@@ -125,8 +125,16 @@ namespace DontPause
                 Plugin.Log?.Debug(ex);
             }
         }
-        
+
         #endregion
+
+        [HarmonyTargetMethods]
+        public static IEnumerable<MethodBase> Methods()
+        {
+            yield return AccessTools.Method(typeof(PauseController), "HarmonyTargetMethods");
+            yield return AccessTools.Method(typeof(PauseController), "HandleHMDUnmounted");
+            yield return AccessTools.Method(typeof(PauseController), "HandleControllersDidDisconnectEvent");
+        }
 
         public static bool Prefix()
         {
