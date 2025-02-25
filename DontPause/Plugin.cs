@@ -131,9 +131,10 @@ namespace DontPause
         [HarmonyTargetMethods]
         public static IEnumerable<MethodBase> Methods()
         {
-            yield return AccessTools.Method(typeof(PauseController), "HandleInputFocusWasCaptured");
-            yield return AccessTools.Method(typeof(PauseController), "HandleHMDUnmounted");
-            yield return AccessTools.Method(typeof(PauseController), "HandleControllersDidDisconnectEvent");
+            //yield return AccessTools.Method(typeof(PauseController), "HandleInputFocusWasCaptured");
+            yield return AccessTools.Method(typeof(PauseController), nameof(PauseController.HandleFocusWasCaptured));
+            yield return AccessTools.Method(typeof(PauseController), nameof(PauseController.HandleHMDUnmounted));
+            yield return AccessTools.Method(typeof(PauseController), nameof(PauseController.HandleControllersDidDisconnectEvent));
         }
 
         public static bool Prefix()
